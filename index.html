@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Balonesia</title>
+  <meta name="theme-color" content="#c8102e">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #000000, #1a0000);
+      color: white;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .login-card {
+      background: rgba(255,255,255,0.05);
+      padding: 30px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 350px;
+      box-shadow: 0 0 20px rgba(255,0,0,0.2);
+    }
+    h2 {
+      text-align: center;
+      color: #ff4444;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 8px;
+      outline: none;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      font-size: 16px;
+    }
+    button {
+      width: 100%;
+      background: #c8102e;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      padding: 10px;
+      margin-top: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #ff1e4e;
+    }
+    .error {
+      color: #ff8080;
+      font-size: 14px;
+      text-align: center;
+      margin-top: 10px;
+      display: none;
+    }
+    .welcome {
+      display: none;
+      text-align: center;
+      animation: fadeIn 1s ease forwards;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: scale(0.95);}
+      to {opacity: 1; transform: scale(1);}
+    }
+  </style>
+</head>
+<body>
+  <div class="login-card" id="login">
+    <h2>Login Balonesia</h2>
+    <input id="user" type="text" placeholder="Usuário">
+    <input id="pass" type="password" placeholder="Senha">
+    <button onclick="login()">Entrar</button>
+    <div class="error" id="error">Usuário ou senha incorretos</div>
+  </div>
+
+  <div class="welcome" id="welcome">
+    <h1 style="color:#ff0000;">Bem Vindo a Balonesia</h1>
+    <p>Você entrou com sucesso!</p>
+    <button onclick="logout()">Sair</button>
+  </div>
+
+  <script>
+    const validUsers = {
+      "davi": "324588",
+      "toshiro": "davidope1234",
+      "raphael": "balonesia"
+    };
+
+    const loginBox = document.getElementById("login");
+    const welcomeBox = document.getElementById("welcome");
+    const errorMsg = document.getElementById("error");
+
+    function login() {
+      const user = document.getElementById("user").value.trim();
+      const pass = document.getElementById("pass").value.trim();
+
+      if (validUsers[user] === pass) {
+        loginBox.style.display = "none";
+        welcomeBox.style.display = "block";
+        document.body.style.background = "linear-gradient(135deg, black, red)";
+        localStorage.setItem("userLogged", user);
+      } else {
+        errorMsg.style.display = "block";
+      }
+    }
+
+    function logout() {
+      localStorage.removeItem("userLogged");
+      welcomeBox.style.display = "none";
+      loginBox.style.display = "block";
+      document.body.style.background = "linear-gradient(135deg, #000000, #1a0000)";
+      errorMsg.style.display = "none";
+      document.getElementById("user").value = "";
+      document.getElementById("pass").value = "";
+    }
+
+    // manter login se já estava logado
+    window.onload = () => {
+      if (localStorage.getItem("userLogged")) {
+        loginBox.style.display = "none";
+        welcomeBox.style.display = "block";
+        document.body.style.background = "linear-gradient(135deg, black, red)";
+      }
+    };
+  </script>
+</body>
+</html>
