@@ -1,135 +1,328 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Balonesia</title>
-  <meta name="theme-color" content="#c8102e">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #000000, #1a0000);
-      color: white;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .login-card {
-      background: rgba(255,255,255,0.05);
-      padding: 30px;
-      border-radius: 20px;
-      width: 90%;
-      max-width: 350px;
-      box-shadow: 0 0 20px rgba(255,0,0,0.2);
-    }
-    h2 {
-      text-align: center;
-      color: #ff4444;
-    }
-    input {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0;
-      border: none;
-      border-radius: 8px;
-      outline: none;
-      background: rgba(255,255,255,0.1);
-      color: white;
-      font-size: 16px;
-    }
-    button {
-      width: 100%;
-      background: #c8102e;
-      color: white;
-      font-weight: bold;
-      border: none;
-      border-radius: 8px;
-      padding: 10px;
-      margin-top: 10px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    button:hover {
-      background: #ff1e4e;
-    }
-    .error {
-      color: #ff8080;
-      font-size: 14px;
-      text-align: center;
-      margin-top: 10px;
-      display: none;
-    }
-    .welcome {
-      display: none;
-      text-align: center;
-      animation: fadeIn 1s ease forwards;
-    }
-    @keyframes fadeIn {
-      from {opacity: 0; transform: scale(0.95);}
-      to {opacity: 1; transform: scale(1);}
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Meu Heksa-like</title>
+<style>
+  /* Reset simples */
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+
+  /* Fundo GIF + fallback */
+  body{
+    min-height:100vh;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: white url('https://media1.tenor.com/m/GXmkKqKUdX0AAAAd/ryomen-sukuna-sukuna-ryomen.gif') center/cover no-repeat fixed;
+    color: #fff;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    padding:48px 20px;
+  }
+
+  /* Conteúdo central */
+  .container{
+    width:100%;
+    max-width:920px;
+    backdrop-filter: blur(8px) saturate(120%);
+    background: linear-gradient(180deg, rgba(0,0,0,0.32), rgba(0,0,0,0.42));
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,0.06);
+    padding:28px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+  }
+
+  /* Top bar */
+  .top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    margin-bottom:20px;
+  }
+  .brand{
+    display:flex;
+    gap:12px;
+    align-items:center;
+  }
+  .logo{
+    width:44px;
+    height:44px;
+    border-radius:8px;
+    background:linear-gradient(135deg,#ffffff08,#ffffff14);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    font-family:monospace;
+    color:rgba(255,255,255,0.95);
+    border:1px solid rgba(255,255,255,0.05);
+  }
+  .title{
+    font-size:1.05rem;
+    letter-spacing:0.02em;
+    opacity:0.98;
+  }
+  .subtitle{
+    font-size:0.82rem;
+    color:rgba(255,255,255,0.8);
+  }
+
+  /* Grid main */
+  .grid{
+    display:grid;
+    grid-template-columns: 1fr 320px;
+    gap:20px;
+    align-items:start;
+  }
+
+  /* Left column: main lists */
+  .card{
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    padding:18px;
+    border-radius:10px;
+    border:1px solid rgba(255,255,255,0.04);
+  }
+  h1,h2{margin-bottom:12px}
+  h1{
+    font-size:1.35rem;
+    letter-spacing: -0.01em;
+  }
+  h2{
+    font-size:1rem;
+    color:rgba(255,255,255,0.9);
+  }
+  p{color:rgba(255,255,255,0.85);margin-bottom:12px;}
+
+  /* Simple list style like heksa */
+  .list{
+    list-style:none;
+    padding:0;
+    margin-top:8px;
+  }
+  .list li{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:12px;
+    border-radius:8px;
+    margin-bottom:10px;
+    background: rgba(0,0,0,0.16);
+    border:1px solid rgba(255,255,255,0.03);
+  }
+  .list .left{
+    display:flex;
+    gap:12px;
+    align-items:center;
+  }
+  .ico{
+    width:44px;height:44px;border-radius:8px;
+    display:inline-flex;align-items:center;justify-content:center;
+    font-family:monospace;
+    color:#fff;
+    background:linear-gradient(135deg, #ffffff10, #ffffff08);
+    border:1px solid rgba(255,255,255,0.03);
+  }
+  .meta{
+    display:flex;flex-direction:column;
+  }
+  .meta .name{font-weight:600}
+  .meta .sub{font-size:0.82rem;color:rgba(255,255,255,0.74)}
+
+  /* Buttons */
+  .actions{display:flex;gap:8px;align-items:center}
+  .btn{
+    background:transparent;
+    border:1px solid rgba(255,255,255,0.08);
+    color:rgba(255,255,255,0.95);
+    padding:8px 10px;border-radius:8px;font-weight:600;font-size:0.9rem;
+    cursor:pointer;
+  }
+  .btn.ghost{background:rgba(255,255,255,0.03)}
+  .btn.copy{font-size:0.85rem;padding:7px 9px}
+
+  /* Right column: profile / links */
+  .profile{
+    position:sticky;top:28px;
+    display:flex;flex-direction:column;gap:12px;
+  }
+  .avatar{
+    width:100%;height:220px;border-radius:8px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    display:flex;align-items:center;justify-content:center;
+    font-size:2.2rem;font-weight:700;color:rgba(255,255,255,0.95);
+    border:1px solid rgba(255,255,255,0.03);
+  }
+  .socials{display:flex;gap:8px;flex-wrap:wrap}
+  .socials a{
+    flex:1 1 48%;
+    text-align:center;
+    padding:10px;border-radius:8px;background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.04);
+    text-decoration:none;color:white;font-weight:700;
+  }
+
+  /* Footer small */
+  .foot{margin-top:14px;font-size:0.82rem;color:rgba(255,255,255,0.68);}
+
+  /* Responsive */
+  @media (max-width:880px){
+    .grid{grid-template-columns:1fr; }
+    .profile{position:relative;top:auto}
+    body{padding:32px 12px}
+  }
+</style>
 </head>
 <body>
-  <div class="login-card" id="login">
-    <h2>Login Balonesia</h2>
-    <input id="user" type="text" placeholder="Usuário">
-    <input id="pass" type="password" placeholder="Senha">
-    <button onclick="login()">Entrar</button>
-    <div class="error" id="error">Usuário ou senha incorretos</div>
-  </div>
+  <main class="container" role="main">
+    <div class="top">
+      <div class="brand">
+        <div class="logo">HK</div>
+        <div>
+          <div class="title">Seu Nome / Heksa-like</div>
+          <div class="subtitle">Minimal • Links • Equipamento</div>
+        </div>
+      </div>
+      <div class="subtitle">Minimal template — inspirado no heksa.ovh</div>
+    </div>
 
-  <div class="welcome" id="welcome">
-    <h1 style="color:#ff0000;">Bem Vindo a Balonesia</h1>
-    <p>Você entrou com sucesso!</p>
-    <button onclick="logout()">Sair</button>
-  </div>
+    <section class="grid">
+      <!-- LEFT COLUMN -->
+      <div>
+        <section class="card">
+          <h1>Sobre</h1>
+          <p>Coloque aqui uma breve descrição sobre você, seu trabalho ou o propósito desta página. Mantive o visual limpo para destacar seus links e equipamentos.</p>
+        </section>
 
-  <script>
-    const validUsers = {
-      "davi": "324588",
-      "toshiro": "davidope1234",
-      "raphael": "balonesia"
-    };
+        <section class="card" style="margin-top:16px">
+          <h2>Equipamento</h2>
+          <ul class="list">
+            <li>
+              <div class="left">
+                <div class="ico">PC</div>
+                <div class="meta">
+                  <div class="name">Workstation Principal</div>
+                  <div class="sub">Ryzen 7 • 32GB RAM • RTX 4070</div>
+                </div>
+              </div>
+              <div class="actions">
+                <button class="btn copy" data-copy="Ryzen 7 • 32GB RAM • RTX 4070">Copiar</button>
+              </div>
+            </li>
 
-    const loginBox = document.getElementById("login");
-    const welcomeBox = document.getElementById("welcome");
-    const errorMsg = document.getElementById("error");
+            <li>
+              <div class="left">
+                <div class="ico">PH</div>
+                <div class="meta">
+                  <div class="name">Telefone</div>
+                  <div class="sub">Moto G23 • A15</div>
+                </div>
+              </div>
+              <div class="actions">
+                <button class="btn copy" data-copy="Moto G23 • A15">Copiar</button>
+              </div>
+            </li>
 
-    function login() {
-      const user = document.getElementById("user").value.trim();
-      const pass = document.getElementById("pass").value.trim();
+            <li>
+              <div class="left">
+                <div class="ico">SO</div>
+                <div class="meta">
+                  <div class="name">SO / Editor</div>
+                  <div class="sub">Android / VSCode</div>
+                </div>
+              </div>
+              <div class="actions">
+                <button class="btn copy" data-copy="Android / VSCode">Copiar</button>
+              </div>
+            </li>
+          </ul>
+        </section>
 
-      if (validUsers[user] === pass) {
-        loginBox.style.display = "none";
-        welcomeBox.style.display = "block";
-        document.body.style.background = "linear-gradient(135deg, black, red)";
-        localStorage.setItem("userLogged", user);
-      } else {
-        errorMsg.style.display = "block";
+        <section class="card" style="margin-top:16px">
+          <h2>Links</h2>
+          <ul class="list" id="links-list">
+            <li>
+              <div class="left">
+                <div class="ico">@</div>
+                <div class="meta">
+                  <div class="name">Instagram</div>
+                  <div class="sub">instagram.com/seuusuario</div>
+                </div>
+              </div>
+              <div class="actions">
+                <a class="btn ghost" href="https://instagram.com/teuusuario" target="_blank" rel="noopener">Abrir</a>
+                <button class="btn copy" data-copy="https://instagram.com/teuusuario">Copiar</button>
+              </div>
+            </li>
+
+            <li>
+              <div class="left">
+                <div class="ico">GH</div>
+                <div class="meta">
+                  <div class="name">GitHub</div>
+                  <div class="sub">github.com/teuusuario</div>
+                </div>
+              </div>
+              <div class="actions">
+                <a class="btn ghost" href="https://github.com/teuusuario" target="_blank" rel="noopener">Abrir</a>
+                <button class="btn copy" data-copy="https://github.com/teuusuario">Copiar</button>
+              </div>
+            </li>
+
+            <li>
+              <div class="left">
+                <div class="ico">TT</div>
+                <div class="meta">
+                  <div class="name">TikTok</div>
+                  <div class="sub">tiktok.com/@teuusuario</div>
+                </div>
+              </div>
+              <div class="actions">
+                <a class="btn ghost" href="https://tiktok.com/@teuusuario" target="_blank" rel="noopener">Abrir</a>
+                <button class="btn copy" data-copy="https://tiktok.com/@teuusuario">Copiar</button>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <aside class="profile">
+        <div class="avatar">SEU AV</div>
+        <div class="card">
+          <h2>Contato</h2>
+          <p style="margin-bottom:8px">Email: <strong>seu@email.com</strong></p>
+          <div class="socials">
+            <a href="https://instagram.com/teuusuario" target="_blank">Instagram</a>
+            <a href="https://twitter.com/teuusuario" target="_blank">Twitter</a>
+            <a href="https://github.com/teuusuario" target="_blank">GitHub</a>
+            <a href="https://tiktok.com/@teuusuario" target="_blank">TikTok</a>
+          </div>
+          <div class="foot">Inspire-se, personalize e publique.</div>
+        </div>
+      </aside>
+    </section>
+
+  </main>
+
+<script>
+  // Função copiar (simples)
+  document.querySelectorAll('.copy').forEach(btn=>{
+    btn.addEventListener('click', async ()=>{
+      const text = btn.getAttribute('data-copy') || '';
+      try{
+        await navigator.clipboard.writeText(text);
+        btn.textContent = 'Copiado ✓';
+        setTimeout(()=> btn.textContent = 'Copiar', 1200);
+      }catch(e){
+        alert('Não foi possível copiar. Abra em um navegador moderno.');
       }
-    }
-
-    function logout() {
-      localStorage.removeItem("userLogged");
-      welcomeBox.style.display = "none";
-      loginBox.style.display = "block";
-      document.body.style.background = "linear-gradient(135deg, #000000, #1a0000)";
-      errorMsg.style.display = "none";
-      document.getElementById("user").value = "";
-      document.getElementById("pass").value = "";
-    }
-
-    // manter login se já estava logado
-    window.onload = () => {
-      if (localStorage.getItem("userLogged")) {
-        loginBox.style.display = "none";
-        welcomeBox.style.display = "block";
-        document.body.style.background = "linear-gradient(135deg, black, red)";
-      }
-    };
-  </script>
+    });
+  });
+</script>
 </body>
 </html>
