@@ -186,7 +186,8 @@
   async function fetchLastFM() {
     const user = 'draxwastaken';
     const apiKey = 'ab45d2456901e4203c1cc3d3fe1667f6';
-    const url = `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${user}&api_key=${apiKey}&format=json&limit=1`;
+    // Proxy para contornar CORS
+    const url = `https://cors-anywhere.herokuapp.com/https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${user}&api_key=${apiKey}&format=json&limit=1`;
 
     try {
       const response = await fetch(url);
