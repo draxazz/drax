@@ -4,24 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>draxwastaken</title>
-
-  <!-- Link para o CSS externo -->
   <link rel="stylesheet" href="style.css">
-
-  <!-- Fonte -->
   <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&family=Orbitron:wght@500&display=swap" rel="stylesheet">
-
-  <!-- Lucide (opcional, mas deixei caso queira usar icones de fallback) -->
   <link href="https://cdn.jsdelivr.net/npm/lucide-icons@latest/font/lucide.css" rel="stylesheet">
-
-  <!-- Meta tags para melhorar cache/control se quiser adaptar depois -->
   <meta name="description" content="Página pessoal de draxwastaken - last.fm + redes sociais" />
 </head>
 <body>
-  <!-- ============================
-       LOADING / PRELOADER
-       (visível até fetch do Last.fm terminar)
-       ============================ -->
   <div id="preloader" class="preloader">
     <div class="preloader-inner">
       <div class="loader-title">draxwastaken</div>
@@ -33,32 +21,20 @@
       <div class="loader-sub">carregando último scrobble...</div>
     </div>
   </div>
-
-  <!-- ============================
-       TÍTULO + TOGGLE DE TEMA
-       ============================ -->
   <header class="topbar" role="banner">
     <h1 class="neon">draxwastaken</h1>
     <button id="theme-toggle" class="theme-toggle" aria-label="Alternar Tema">🌙</button>
   </header>
-
-  <!-- ============================
-       CONTEÚDO PRINCIPAL (CARD LAST.FM)
-       ============================ -->
   <main class="main" role="main">
     <section class="card lastfm-card" aria-live="polite">
       <div class="card-left">
-        <h2 id="username">loading...</h2>
-
+        <h2 id="username">draxwastaken</h2>
         <p class="trackline">
-          <a id="artist" href="#" target="_blank" rel="noopener noreferrer">-</a>
+          <a id="artist" href="#" target="_blank" rel="noopener noreferrer">White Noise Therapy — White Noise 3 Hour Long</a>
         </p>
-
         <p class="meta">
-          <span id="timeago">-</span> • <span class="source">last.fm</span>
+          <span id="timeago">1 hours ago</span> • <span class="source">last.fm</span>
         </p>
-
-        <!-- small player controls visuais (fake controls apenas estéticos) -->
         <div class="player-visual" aria-hidden="true">
           <div class="bars">
             <span class="bar b1"></span>
@@ -69,157 +45,30 @@
           <div class="playbtn">▶</div>
         </div>
       </div>
-
       <div class="card-right">
         <img id="avatar" class="album-art" src="https://via.placeholder.com/60" alt="Capa do álbum" />
       </div>
     </section>
-
-    <!-- ============================
-         ICONS / REDES SOCIAIS (ORIGINAIS)
-         ============================ -->
     <nav class="icons" aria-label="Social links">
-      <!-- Spotify -->
       <a class="social icon-spotify" href="https://open.spotify.com/user/draaax!" target="_blank" title="Spotify" aria-label="Spotify">
-        <!-- inline SVG spotify (clean) -->
         <svg viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.37 0 0 5.37 0 12a12 12 0 1024 0c0-6.63-5.37-12-12-12zm5.37 17.36a.75.75 0 01-1.04.24c-2.85-1.73-6.43-2.13-10.65-1.16a.75.75 0 11-.33-1.45 13.73 13.73 0 0111.52 1.26.75.75 0 01.5 1.11z"/></svg>
       </a>
-
-      <!-- Discord -->
       <a class="social icon-discord" href="https://discord.gg/N4vMbsDa" target="_blank" title="Discord" aria-label="Discord">
-        <!-- inline simple discord icon -->
         <svg viewBox="0 0 71 55" role="img" xmlns="http://www.w3.org/2000/svg"><path d="M60.104 4.552a58.043 58.043 0 00-14.527-4.527.218.218 0 00-.232.1c-.63 1.086-1.335 2.495-1.83 3.61a55.322 55.322 0 00-16.418 0c-.496-1.115-1.2-2.524-1.83-3.61a.232.232 0 00-.232-.1A58.013 58.013 0 001.2 4.552a.204.204 0 00-.086.078C1.027 17.623 1.678 30.646 2.546 43.615a.23.23 0 00.084.154 58.119 58.119 0 0017.618 8.927.23.23 0 00.234-.083c1.361-1.87 2.574-3.85 3.6-5.927a.23.23 0 00-.127-.32 44.335 44.335 0 01-6.333-3.07.115.115 0 01-.012-.01c.53-.376 1.04-.77 1.52-1.196a.222.222 0 01.23-.036 41.434 41.434 0 0012.446 5.894.231.231 0 00.203-.036.217.217 0 00.092-.136c.716-2.5 1.2-5.102 1.43-7.746a.228.228 0 00-.068-.165 27.926 27.926 0 01-3.837-1.83.222.222 0 01-.02-.37c.547-.446 1.075-.914 1.576-1.416a.222.222 0 01.146-.069c3.14-.317 6.243-1.057 9.244-2.114a.23.23 0 00.115-.096c.08-.11.14-.238.176-.38a23.423 23.423 0 001.06-7.874.22.22 0 00-.085-.176z"/></svg>
       </a>
-
-      <!-- GitHub -->
       <a class="social icon-github" href="https://github.com/draxazz" target="_blank" title="GitHub" aria-label="GitHub">
         <svg viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg"><path d="M12 0a12 12 0 00-3.79 23.4c.6.11.82-.26.82-.58v-2.2c-3.34.72-4.04-1.6-4.04-1.6a3.18 3.18 0 00-1.33-1.75c-1.09-.75.08-.74.08-.74a2.52 2.52 0 011.84 1.24 2.56 2.56 0 003.5 1 2.57 2.57 0 01.76-1.6c-2.66-.3-5.47-1.33-5.47-5.94a4.63 4.63 0 011.24-3.22 4.3 4.3 0 01.12-3.17s1-.33 3.3 1.23a11.5 11.5 0 016 0c2.3-1.56 3.3-1.23 3.3-1.23a4.3 4.3 0 01.12 3.17 4.63 4.63 0 011.24 3.22c0 4.62-2.81 5.63-5.48 5.93a2.87 2.87 0 01.82 2.23v3.31c0 .32.22.7.82.58A12 12 0 0012 0z"/></svg>
       </a>
-
-      <!-- TikTok -->
       <a class="social icon-tiktok" href="https://www.tiktok.com/@draxwastaken7" target="_blank" title="TikTok" aria-label="TikTok">
         <svg viewBox="0 0 48 48" role="img" xmlns="http://www.w3.org/2000/svg"><path d="M21.97 43.12c-.45 0-.9-.08-1.32-.25a5.41 5.41 0 01-2.79-2.3c-1.67-2.44-1.45-5.82.48-8.26 2.2-2.86 6.18-3.17 8.86-1.03v-6.74h4.88v13.9a14.1 14.1 0 01-9.11 4.68z"/></svg>
       </a>
     </nav>
-
-    <!-- ============================
-         MENSAGEM DE ERRO / FALLBACK
-         ============================ -->
     <div id="error-msg" class="error-msg" role="status" aria-live="polite" hidden>
       Não foi possível carregar os dados do Last.fm.
     </div>
   </main>
-
-  <!-- ============================
-       RODAPÉ
-       ============================ -->
   <footer class="footer">
     <small>by <strong>draxwastaken</strong></small>
   </footer>
-
-  <!-- ============================
-       SCRIPTS
-       ============================ -->
-  <script>
-    /***********************************************
-     * Tema toggle + persistência (localStorage)
-     ***********************************************/
-    const themeToggle = document.getElementById('theme-toggle');
-    const userPref = localStorage.getItem('theme') || 'light';
-    if (userPref === 'dark') document.body.classList.add('dark');
-    themeToggle.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
-
-    themeToggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-      const isDark = document.body.classList.contains('dark');
-      themeToggle.textContent = isDark ? '☀️' : '🌙';
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    });
-
-    /***********************************************
-     * Função timeAgo (mesma do original)
-     ***********************************************/
-    function timeAgo(date) {
-      const seconds = Math.floor((new Date() - date) / 1000);
-      if (seconds < 60) return 'just now';
-      else if (seconds < 3600) return Math.floor(seconds / 60) + ' minutes ago';
-      else if (seconds < 86400) return Math.floor(seconds / 3600) + ' hours ago';
-      else return Math.floor(seconds / 86400) + ' days ago';
-    }
-
-    /***********************************************
-     * FETCH Last.fm - com tratamento e loading
-     ***********************************************/
-    async function fetchLastFM() {
-      const user = 'draxwastaken';
-      const apiKey = 'ab45d2456901e4203c1cc3d3fe1667f6';
-      const url = `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${user}&api_key=${apiKey}&format=json&limit=1`;
-
-      const pre = document.getElementById('preloader');
-      const errorMsg = document.getElementById('error-msg');
-
-      try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error('HTTP ' + response.status);
-        const data = await response.json();
-
-        // proteção caso api retorne vazio
-        if (!data.recenttracks || !data.recenttracks.track || data.recenttracks.track.length === 0) {
-          throw new Error('No tracks');
-        }
-
-        const track = data.recenttracks.track[0];
-        const artistName = track.artist['#text'] || '-';
-        const trackName = track.name || '-';
-        const albumArtObj = (track.image || []).find(i => i.size === 'medium');
-        const albumArt = albumArtObj ? albumArtObj['#text'] : '';
-
-        const nowPlaying = track['@attr'] && track['@attr'].nowplaying;
-        const playTime = nowPlaying ? new Date() : new Date(track.date['uts'] * 1000);
-
-        // Preencher DOM
-        document.getElementById('username').textContent = user;
-        const artistLink = document.getElementById('artist');
-        artistLink.textContent = artistName + ' — ' + trackName;
-        artistLink.href = track.url || '#';
-        document.getElementById('timeago').textContent = timeAgo(playTime);
-        const avatar = document.getElementById('avatar');
-        avatar.src = albumArt || 'https://via.placeholder.com/60';
-        avatar.alt = `${trackName} — ${artistName}`;
-
-        // animações: revelar card + esconder preloader
-        setTimeout(() => {
-          pre.classList.add('hidden');     // aplica estilo para sumir
-          pre.setAttribute('aria-hidden','true');
-          document.querySelector('.lastfm-card').classList.add('visible');
-        }, 400);
-
-      } catch (err) {
-        console.error('Error fetching Last.fm:', err);
-        // esconde preloader e mostra mensagem de erro
-        document.getElementById('preloader').classList.add('hidden');
-        errorMsg.hidden = false;
-      }
-    }
-
-    // Chama fetch ao carregar
-    fetchLastFM();
-
-    /***********************************************
-     * Animações adicionais JS (pequenas interações)
-     ***********************************************/
-    // efeito visual das barras do player (loop)
-    (function animateBars() {
-      const bars = document.querySelectorAll('.player-visual .bar');
-      let idx = 0;
-      setInterval(() => {
-        bars.forEach((b, i) => {
-          const h = 6 + Math.abs(Math.sin((idx + i) / 2)) * 18;
-          b.style.height = `${h}px`;
-        });
-        idx++;
-      }, 300);
-    })();
-  </script>
 </body>
 </html>
